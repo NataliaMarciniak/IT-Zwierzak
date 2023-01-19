@@ -1,0 +1,27 @@
+{% extends 'adoption_announcement/base.html' %}
+
+<li class="form-line jf-required" data-type="control_fullname" id="id_11">
+    <label class="form-label form-label-left form-label-auto" for="first_11">Imię i Nazwisko<span class="form-required">*</span></label>
+    <div id="cid_11" class="form-input jf-required">
+        <div data-wrapper-react="true">
+            <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
+                <input type="text" id="first_11" name="q11_imieI[first]" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_11 given-name" size="10" value="" data-component="first" aria-labelledby="label_11 sublabel_11_first" required="">
+                <label class="form-sub-label" for="first_11" id="sublabel_11_first" style="min-height:13px" aria-hidden="false"> Imię </label></span>
+            <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
+                <input type="text" id="last_11" name="q11_imieI[last]" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_11 family-name" size="15" value="" data-component="last" aria-labelledby="label_11 sublabel_11_last" required="">
+                <label class="form-sub-label" for="last_11" id="sublabel_11_last" style="min-height:13px" aria-hidden="false"> Nazwisko </label></span>
+        </div>
+    </div>
+</li>
+
+<label class="form-label form-label-left form-label-auto" for="first_11">Imię i Nazwisko<span class="form-required">*</span></label>
+
+
+
+<div class="mt-5">
+
+{% block content %}
+{% endblock content %}
+
+</div>
+
