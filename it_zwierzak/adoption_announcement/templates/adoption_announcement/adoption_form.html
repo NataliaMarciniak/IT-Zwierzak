@@ -1,26 +1,76 @@
 {% extends 'adoption_announcement/base.html' %}
 
-<li class="form-line jf-required" data-type="control_fullname" id="id_11">
-    <label class="form-label form-label-left form-label-auto" for="first_11">Imię i Nazwisko<span class="form-required">*</span></label>
-    <div id="cid_11" class="form-input jf-required">
-        <div data-wrapper-react="true">
-            <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
-                <input type="text" id="first_11" name="q11_imieI[first]" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_11 given-name" size="10" value="" data-component="first" aria-labelledby="label_11 sublabel_11_first" required="">
-                <label class="form-sub-label" for="first_11" id="sublabel_11_first" style="min-height:13px" aria-hidden="false"> Imię </label></span>
-            <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
-                <input type="text" id="last_11" name="q11_imieI[last]" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_11 family-name" size="15" value="" data-component="last" aria-labelledby="label_11 sublabel_11_last" required="">
-                <label class="form-sub-label" for="last_11" id="sublabel_11_last" style="min-height:13px" aria-hidden="false"> Nazwisko </label></span>
+{% block content %}
+
+</p>
+<form>
+<div class = "container col-md-3 justify-content-center">
+    <div class="form-row">
+        <div class="form-group mb-4">
+            <label for="name">Imię</label>
+            <input type="name" class="form-control" id="name">
+        </div>
+    <div class="form-group mb-4">
+            <label for="surname">Nazwisko</label>
+            <input type="surname" class="form-control" id="surname">
+    </div>
+    </div>
+    <div class="form-group mb-4">
+        <label for="phone">Telefon</label>
+        <input type="phone" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+    </div>
+    <div class="form-group mb-4">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email">
+    </div>
+    <div class="form-group mb-4">
+        <label for="address">Adres 1</label>
+        <input type="text" class="form-control" id="address">
+    </div>
+    <div class="form-group mb-4">
+        <label for="address2">Adres 2</label>
+        <input type="text" class="form-control" id="address2">
+    </div>
+    <div class="form-row mb-4">
+        <div class="form-group">
+            <label for="city">Miasto</label>
+            <input type="text" class="form-control" id="city">
+        </div>
+        <div class="form-group mb-4">
+            <label for="przykladoweWojewodztwo">Województwo</label>
+            <select id="przykladoweWojewodztwo" class="form-control">
+                <option selected>Wybierz...</option>
+                <option>Dolnośląskie</option>
+                <option>Kujawsko-Pomorskie</option>
+                <option>Lubelskie</option>
+                <option>Lubuskie</option>
+                <option>Łódzkie</option>
+                <option>Małopolskie</option>
+                <option>Mazowieckie</option>
+                <option>Opolskie</option>
+                <option>Podkarpackie</option>
+                <option>Podlaskie</option>
+                <option>Pomorskie</option>
+                <option>Śląskie</option>
+                <option>Świekrzyskie</option>
+                <option>Warmińsko-Mazurskie</option>
+                <option>Wielkopolskie</option>
+                <option>Zachodniopomorskie</option>
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label for="postcode">Kod pocztowy</label>
+            <input type="text" class="form-control" id="postcode">
         </div>
     </div>
-</li>
-
-<label class="form-label form-label-left form-label-auto" for="first_11">Imię i Nazwisko<span class="form-required">*</span></label>
-
+</div>
+    <button type="submit" class="btn btn-primary">Wyślij</button>
+</form>
 
 
 <div class="mt-5">
 
-{% block content %}
+
 {% endblock content %}
 
 </div>

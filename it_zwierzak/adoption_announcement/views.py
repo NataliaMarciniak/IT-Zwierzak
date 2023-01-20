@@ -10,8 +10,8 @@ def base(request):
 def home_page(request):
     return render(request, 'adoption_announcement/home_page.html')
 
-def news(request):
-    return render(request, 'adoption_announcement/news.html')
+def adopted(request):
+    return render(request, 'adoption_announcement/adopted.html')
 
 def adoptions(request):
     return render(request, 'adoption_announcement/adoptions.html')
@@ -21,3 +21,6 @@ def adoption_card(request):
 
 def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_form.html')
+
+def statute (request):
+    return render(request, 'adoption_announcement/statute.html')
