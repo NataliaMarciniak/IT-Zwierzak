@@ -1,0 +1,160 @@
+{% extends 'adoption_announcement/base.html' %}
+
+{% block content %}
+
+<form action="Adoption" method="post"> {% csrf_token %}
+    <div class = "container col-md-3 justify-content-center">
+        <div class="form-row">
+            <div class="form-group mb-4">
+                <label for="education">Dane o wykształceniu i zatrudnieniu*</label>
+                <input type="text" class="form-control" id="education" placeholder="Jeśli pracujesz, napisz gdzie">
+            </div>
+        <div class="form-group mb-4">
+                <label for="number_of_adults">Liczba osób dorosłych w domu*</label>
+                <input type="text" class="form-control" id="number_of_adults">
+        </div>
+        </div>
+        <div class="form-group mb-4">
+            <label for="number_of_children">Liczba i wiek dzieci w domu*</label>
+            <input type="text" class="form-control" id="number_of_children">
+        </div>
+        <div class="form-group mb-4">
+            <label for="other_animals">Zwierzęta w domu (liczba, gatunek, wiek, stan zdrowia)*</label>
+            <input type="text" class="form-control" id="other_animals">
+        </div>
+        <div class="form-group mb-4">
+            <label for="hours_away_from_home">Ile godzin dziennie (zazwyczaj) przebywasz poza domem?*</label>
+            <input type="text" class="form-control" id="hours_away_from_home">
+        </div>
+        <div class="form-group mb-4">
+            <label>Czy myślisz o przeprowadzce w przeciągu najbliższych 2 lat?*</label>
+        </div>
+        <select class="choicefield" id="czy-myslisz-o-przeprowadzce-w-przeciagu-najblizszych-2-lat" name="czy-myslisz-o-przeprowadzce-w-przeciagu-najblizszych-2-lat" required="">
+            <option value="TAK">TAK</option>
+            <option value="NIE">NIE</option>
+        </select>
+        <div class="form-group mb-4">
+            <label for="impossible_to_care">Co zrobisz ze zwierzęciem, jeśli przeprowadzka uniemożliwi dalszą opiekę nad nim?*</label>
+            <input type="text" class="form-control" id="impossible_to_care">
+        </div>
+        <div class="form-group mb-4">
+            <label for="allergy">Czy któryś z domowników jest alergikiem?*</label>
+            <input type="text" class="form-control" id="allergy">
+        </div>
+        <div class="form-group mb-4">
+            <label for="dander_allergy">Co zrobisz, jeśli w pewnym momencie okaże się, że któryś z domowników ma alergię na sierść?*</label>
+            <input type="text" class="form-control" id="dander_allergy">
+        </div>
+        <div class="form-group mb-4">
+            <label for="why_adoption">Dlaczego chcesz adoptować?*</label>
+            <input type="text" class="form-control" id="why_adoption">
+        </div>
+        <div class="form-group mb-4">
+            <label for="concret_animal">Czy interesuje Cię konkretny podopieczny?*</label>
+            <input type="text" class="form-control" id="concret_animal">
+        </div>
+        <div class="form-group mb-4">
+            <label for="expectations">Jakie masz oczekiwania względem zwierzęcia? Np. określony wiek, wielkość, płeć, cechy charakteru*</label>
+            <input type="text" class="form-control" id="expectations">
+        </div>
+        <div class="form-group mb-4">
+            <label for="knowledge">Jakie znasz źródła wiedzy o zwierzętach? Z jakich źródeł korzystasz?*</label>
+            <input type="text" class="form-control" id="knowledge">
+        </div>
+        <div class="form-group mb-4">
+            <label for="history_of_animal">Czy w twoim domu mieszkał/mieszka jakieś zwierzę? Jeśli tak, opisz nam jego historię (warunki, dieta, przebyte choroby, kastracja, jeśli nie żyje – przyczyna odejścia)*</label>
+            <input type="text" class="form-control" id="history_of_animal">
+        </div>
+        <div class="form-group mb-4">
+            <label for="vet">Pod opieką jakiej lecznicy weterynaryjnej jest/był Twoje zwierzę? (nazwa, adres, mile widziane nazwisko lekarza weterynarii)*</label>
+            <input type="text" class="form-control" id="vet">
+        </div>
+        <div class="form-group mb-4">
+            <label for="conditions">Opisz warunki, jakie zaoferujesz adoptowanemu zwierzęciu.*</label>
+            <input type="text" class="form-control" id="conditions">
+        </div>
+        <div class="form-group mb-4">
+            <label for="interaction">Czas na interakcje z domownikami (liczba godzin dziennie)*</label>
+            <input type="text" class="form-control" id="interaction">
+        </div>
+        <div class="form-group mb-4">
+            <label for="separation">Czy jest możliwość separowania zwierzęcia od innych zwierząt w domu?*</label>
+        </div>
+        <select class="choicefield" id="separation" name="separation" required="">
+            <option value="TAK">TAK</option>
+            <option value="NIE">NIE</option>
+        </select>
+        <div class="form-group mb-4">
+            <label for="food">Czym i jak zamierzasz karmić nowe zwierzę?*</label>
+            <input type="text" class="form-control" id="food">
+        </div>
+        <div class="form-group mb-4">
+            <label for="maintenance">Jaką kwotę miesięcznie zamierzasz/jesteś w stanie przeznaczyć na utrzymanie zwierzęcia (wyżywienie, standardowa opieka wet., nagłe przypadki wymagające interwencji weterynarza, konieczność długotrwałego leczenia)?*</label>
+            <input type="text" class="form-control" id="maintenance">
+        </div>
+        <div class="form-group mb-4">
+            <label for="tests">Czy zobowiążesz się do okresowych badań kontrolnych zwierzęcia, również w sytuacji, gdy nie przejawia niepokojących objawów? Kontrole powinien przeprowadzać lekarz weterynarii doświadczony w opiece nad konkretnym gatunkiem zwierząt.*</label>
+        </div>
+        <select class="choicefield" id="tests" name="tests" required="">
+            <option value="TAK">TAK</option>
+            <option value="NIE">NIE</option>
+        </select>
+        <div class="form-group mb-4">
+            <label for="vacation">Jeśli wyjedziesz na urlop, co zrobisz ze zwierzęciem?*</label>
+            <input type="text" class="form-control" id="vacation">
+        </div>
+        <div class="form-group mb-4">
+            <label for="conversation">Czy zgadzasz się na przeprowadzenie rozmowy przedadopcyjnej w miejscu, w którym ma zamieszkać zwierzę?*</label>
+        </div>
+        <select class="choicefield" id="conversation" name="tests" required="">
+            <option value="TAK">TAK</option>
+            <option value="NIE">NIE</option>
+        </select>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="statement1">
+            <label class="form-check-label" for="statement1">
+            Oświadczam, że*
+            <br>
+            nie prowadzę i nie będę prowadził hodowli zwierząt w celu sprzedaży lub własnego wykorzystania na mięso lub inne substancje spożywcze,
+            futro lub skóry, testy laboratoryjne / kosmetyków / lekarstw, zaopatrzenie sklepów zoologicznych,
+            karmę dla innych zwierząt, zwierzęta w klasie szkolnej, przedszkolu lub innej tego typu placówce,
+            handel na aukcji internetowej, żywą przynętę w szkoleniu psów, żywą przynętę w konkursach psów myśliwskich ani żadnej innej dziedzinie związanej z myślistwem.
+            </label>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="statement2">
+            <label class="form-check-label" for="statement2">
+            Oświadczam, że jestem osobą pełnoletnią i będę się opiekował zwierzęciem najlepiej, jak potrafię,
+            zgodnie z Regulaminem Adopcji IT-Zwierzak oraz Ustawą o Ochronie Zwierząt z 1997 r. *
+            </label>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="agreement">
+            <label class="form-check-label" for="agreement">
+            Wyrażam zgodę na przetwarzanie moich danych osobowych przez IT-Zwierzak.*
+            </label>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="privacy">
+            <label class="form-check-label" for="privacy">
+            Zapoznałem się z polityką prywatności IT-Zwierzak*
+            </label>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </div>
+
+</form>
+
+
+<div class="mt-5">
+
+
+{% endblock content %}
+
+</div>
+
