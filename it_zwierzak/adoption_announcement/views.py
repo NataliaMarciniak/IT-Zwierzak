@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
+
+from .templates import forms
 
 def index(request):
     return HttpResponse("Ogłoszenie Adopcji")
 
 def base(request):
     return render(request, 'adoption_announcement/base.html')
-
-def home_page(request):
-    return render(request, 'adoption_announcement/home_page.html')
 
 def adopted(request):
     return render(request, 'adoption_announcement/adopted.html')
@@ -21,6 +20,3 @@ def adoption_card(request):
 
 def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_form.html')
-
-def statute (request):
-    return render(request, 'adoption_announcement/statute.html')
