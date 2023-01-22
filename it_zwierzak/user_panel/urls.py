@@ -1,8 +1,15 @@
-from django.urls import path
-from .views import home, profile, RegisterView
+from django.contrib import admin
+from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', home, name='users-home'),
-    path('register/', RegisterView.as_view(), name='users-register'),
-    path('profile/', profile, name='users-profile'),
+    path('admin/', admin.site.urls),
+    path('',include('todo.urls')),
+    path('',include('users.urls'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
