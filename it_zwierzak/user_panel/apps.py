@@ -1,6 +1,10 @@
 from django.apps import AppConfig
 
 
-class HomepageConfig(AppConfig):
+class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'user_panel'
+
+    # add this
+    def ready(self):
+        import user_panel.signals
