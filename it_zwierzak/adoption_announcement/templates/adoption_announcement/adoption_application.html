@@ -1,0 +1,83 @@
+{% extends "adoption_announcement/base.html" %}
+
+{% block content %}
+  <div class="container col-4 mt-5 justify_content_center">
+    <h3 id="form_title">WYPEŁNIJ ANKIETĘ PRZEDADOPCYJNĄ</h3>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div>
+        <p class="mt-2">Dane o Twoim wykształceniu i zatrudnieniu: </p>
+        {{ form.your_education }}
+      </div>
+
+      <div>
+        <p class="mt-2">Liczba osób dorosłych w domu: </p>
+        {{ form.number_of_adults_in_the_house }}
+      </div>
+
+      <div>
+        <p class="mt-2">Liczba dzieci w domu: </p>
+        {{ form.number_of_children_in_the_house }}
+      </div>
+
+      <div>
+        <p class="mt-2">Inne zwierzęta w domu (liczba, gatunek, wiek, stan zdrowia): </p>
+        {{ form.other_animals }}
+      </div>
+
+      <div>
+        <p class="mt-2">Ile godzin dziennie (zazwyczaj) przebywasz poza domem? </p>
+        {{ form.hours_away_from_home }}
+      </div>
+
+      <div>
+        <p class="mt-2">Co zrobisz ze zwierzęciem, jeśli przeprowadzka uniemożliwi dalszą opiekę nad nim? </p>
+        {{ form.what_about_moving }}
+      </div>
+
+      <div>
+        <p class="mt-2">Czy któryś z domowników jest alergikiem?</p>
+        {{ form.someone_is_allergic }}
+      </div>
+
+      <div>
+        <p class="mt-2">Dlaczego chcesz adoptować wybrane zwierzę?</p>
+        {{ form.why_adoption }}
+      </div>
+
+      <div>
+        <p class="mt-2">Czy interesuje Cię konkretny podopieczny?</p>
+        {{ form.specific_animal_to_adopt }}
+      </div>
+
+      <div>
+        <p class="mt-2">Czas na interakcje z domownikami (liczba godzin dziennie): </p>
+        {{ form.hours_of_interaction }}
+      </div>
+
+      <div>
+        <p class="mt-2">Czym i jak zamierzasz karmić nowego przyjaciela?</p>
+        {{ form.feeding_the_animal }}
+      </div>
+
+      <div>
+        <p class="mt-2">Jaką kwotę miesięcznie zamierzasz/jesteś w stanie przeznaczyć na utrzymanie zwierzęcia?</p>
+        {{ form.animal_maintenance }}
+      </div>
+
+      <div>
+        <p class="mt-2">Jeśli wyjedziesz na urlop, co zrobisz ze zwierzęciem?</p>
+        {{ form.what_if_you_go_on_vacation }}
+      </div>
+
+      <input type="submit" value="Wyślij" class="btn btn-primary mt-3">
+    </form>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+

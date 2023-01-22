@@ -1,22 +1,41 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.views.generic import FormView
+from .forms import AdoptionForm
+from .models import AdoptionApplication
 
-from .templates import forms
 
-def index(request):
-    return HttpResponse("Ogłoszenie Adopcji")
-
-def base(request):
-    return render(request, 'adoption_announcement/base.html')
-
+# zaadoptowane
 def adopted(request):
-    return render(request, 'adoption_announcement/adopted.html')
+    return render(request, 'adoption_announcement/adopted_animals.html')
 
+
+# przeniesienie do strony z kafelkami adopcji
 def adoptions(request):
-    return render(request, 'adoption_announcement/adoptions.html')
+    return render(request, 'adoption_announcement/animals_to_adoption.html')
 
+
+# przeniesienie do konkretnego ogłoszenia zwierzęcia, po id z bazy danych
 def adoption_card(request):
-    return render(request, 'adoption_announcement/adoption_card.html')
+    return render(request, 'adoption_announcement/announcement_detail.html')
+
 
 def adoption_form(request):
-    return render(request, 'adoption_announcement/adoption_form.html')
+    return render(request, 'adoption_announcement/adoption_application.html')
+
+
+class AdoptionApplicationView(FormView):
+    template_name = 'adoption_announcement/adoption_application.html'
+    form_class = AdoptionForm
+    success_url = '/animals_to_adoption'
+
+
+def adoption_application_view(request):
+    form = AdoptionForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'adoption_announcement/adoption_application.html', context)
