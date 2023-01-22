@@ -1,17 +1,13 @@
 from django.db import models
-
 from django.contrib.auth.models import User
 
-class UserProfile(models.Model):
-    # This field is required.
-    user = models.OneToOneField(User)
 
-    # Other fields here
-    accepted_eula = models.BooleanField()
-    favorite_animal = models.CharField(max_length=20, default="Dragons.")
+# Extending User Model Using a One-To-One Link
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    bio = models.TextField()
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
+    def __str__(self):
+        return self.user.username
