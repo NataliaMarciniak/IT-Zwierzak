@@ -25,7 +25,7 @@ def register(request):
     )
 
 
-def loginpage(request):
+def login(request):
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -43,5 +43,3 @@ def loginpage(request):
         request,
         'user/login.html',
     )
-
-
