@@ -112,7 +112,7 @@
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Masz już swój profil? <a href="{% url 'homepage:login' %}" class="ml-2">Zaloguj</a>
+						Masz już swój profil? <a href="{% url 'user:login' %}" class="ml-2">Zaloguj</a>
 					</div>
 				</div>
 			</div>
@@ -123,10 +123,10 @@
 
 
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Username';
+		form_fields[1].placeholder='Nazwa użytkownika';
 		form_fields[2].placeholder='Email';
-		form_fields[3].placeholder='Password';
-		form_fields[4].placeholder='Repeat password';
+		form_fields[3].placeholder='Hasło';
+		form_fields[4].placeholder='Powtórz hasło';
 
 
 		for (var field in form_fields){
@@ -135,5 +135,3 @@
 	</script>
 </body>
 </html>
-
-
