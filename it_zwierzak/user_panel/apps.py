@@ -1,11 +1,9 @@
 from django.apps import AppConfig
 
 
-
 class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'user_panel'
+    name = 'users'
 
-    # add this
     def ready(self):
-        import user_panel.signals
+        import users.signals  # noqa
