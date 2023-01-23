@@ -16,9 +16,13 @@
           </a>
 
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'homepage:home' %}" class="nav-link px-2 text-white">Strona Główna</a></li>
+            <li><a href="{% url 'adopted' %}" class="nav-link px-2 text-white">Zaadoptowane</a></li>
+            <li><a href="{% url 'adoptions' %}" class="nav-link px-2 text-white">Adopcje</a></li>
+            <li><a href="{% url 'homepage:advice' %}" class="nav-link px-2 text-white">Porady</a></li>
             <li><a href="#" class="nav-link px-2 text-white">O nas</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">Kontakt</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">Regulamin</a></li>
+            <li><a href="{% url 'homepage:contact' %}" class="nav-link px-2 text-white">Kontakt</a></li>
+            <li><a href="{% url 'homepage:statute' %}" class="nav-link px-2 text-white">Regulamin</a></li>
           </ul>
 
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
