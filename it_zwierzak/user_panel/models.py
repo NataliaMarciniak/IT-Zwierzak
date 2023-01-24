@@ -1,20 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-# Create your models here.
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    website = models.URLField(default='', blank=True)
+    city = models.CharField(max_length=100, default='', blank=True)
+    signature = models.TextField(default='', blank=True)
 
-...
+    def create_profile(sender, **kwargs): #Funckja, ktora tworzy profile użytkownika
+        user = kwargs["instance"]
+        if kwargs["created"]:
+            user_profile = UserProfile(user=user)
+            user_profile.save()
+    post_save.connect(create_profile, sender=User)
 
-class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-	@receiver(post_save, sender=User) #add this
-	def create_user_profile(sender, instance, created, **kwargs):
-		if created:
-			Profile.objects.create(user=instance)
-
-	@receiver(post_save, sender=User) #add this
-	def save_user_profile(sender, instance, **kwargs):
-		instance.profile.save()
+    def __str__(self): #Definiujemy funkcje, która zwraca tytuł wpisu
+        return self.user.username

@@ -1,13 +1,23 @@
-from .models import Profile #import Profile from models.py
+from django import forms
+from .models import UserProfile
+from django.contrib.auth.models import User
 
-# Create your forms here.
-class NewUserForm(UserCreationForm):
-    ...
 
-class UserForm(forms.ModelForm):
-   ...
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+            "email"
+        ]
 
-class ProfileForm(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = ('products',)
+
+class EditUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            "website",
+            "city",
+            "signature"
+        ]
