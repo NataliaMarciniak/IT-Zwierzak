@@ -1,6 +1,5 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from datetime import datetime, date
 
 
 class Announcement(models.Model):
@@ -12,7 +11,8 @@ class Announcement(models.Model):
     breed = models.CharField(max_length=30)
     name = models.CharField(max_length=15)
     health = models.CharField(max_length=30)
-    description = models.CharField(max_length=100)
+    short_description = models.TextField(max_length=300, default=' ')
+    description = models.TextField(max_length=300)
     post_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import FormView
 from .forms import AdoptionForm
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Announcement
 
@@ -11,12 +10,8 @@ def adopted(request):
 
 
 def adoptions(request):
-    data = Announcement.objects.all()
-    return render(request, 'adoption_announcement/animals_for_adoption.html', {'data': data})
-
-# def index(request):
-#     data = Announcement.objects.all()
-#     return render(request, 'adoption_announcement/animals_for_adoption.html', {'data': data})
+    announcement_data = Announcement.objects.all()
+    return render(request, 'adoption_announcement/animals_for_adoption.html', {'announcement_data': announcement_data})
 
 
 def adoption_card(request):
@@ -43,7 +38,4 @@ def adoption_application_view(request):
     }
     return render(request, 'adoption_announcement/adoption_application.html', context)
 
-# @login_required
-# def adopted_application_for_logged_in(request):
-#     return render(request, 'adoption_announcement/adoption_application.html')
 

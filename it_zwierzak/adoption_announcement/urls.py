@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import adoption_application_view
-from .models import Announcement
 from . import views
 
 urlpatterns = [
