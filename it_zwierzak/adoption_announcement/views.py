@@ -3,20 +3,22 @@ from django.views.generic import FormView
 from .forms import AdoptionForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Announcement
 
 
-
-# zaadoptowane
 def adopted(request):
     return render(request, 'adoption_announcement/adopted_animals.html')
 
 
-# przeniesienie do strony z kafelkami adopcji
 def adoptions(request):
-    return render(request, 'adoption_announcement/animals_to_adoption.html')
+    data = Announcement.objects.all()
+    return render(request, 'adoption_announcement/animals_for_adoption.html', {'data': data})
+
+# def index(request):
+#     data = Announcement.objects.all()
+#     return render(request, 'adoption_announcement/animals_for_adoption.html', {'data': data})
 
 
-# przeniesienie do konkretnego ogłoszenia zwierzęcia, po id z bazy danych
 def adoption_card(request):
     return render(request, 'adoption_announcement/announcement_detail.html')
 
@@ -25,10 +27,11 @@ def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_application.html')
 
 
-class AdoptionApplicationView(LoginRequiredMixin, FormView): #tylko dla zalogowanych
+class AdoptionApplicationView(LoginRequiredMixin, FormView):
     template_name = 'adoption_announcement/adoption_application.html'
     form_class = AdoptionForm
-    success_url = '/animals_to_adoption'
+    success_url = '/animals_for_adoption'
+
 
 def adoption_application_view(request):
     form = AdoptionForm(request.POST or None)
@@ -40,6 +43,7 @@ def adoption_application_view(request):
     }
     return render(request, 'adoption_announcement/adoption_application.html', context)
 
-@login_required
-def private_page(request):
-    return render(request, 'adoption_announcement/adoption_application.html')
+# @login_required
+# def adopted_application_for_logged_in(request):
+#     return render(request, 'adoption_announcement/adoption_application.html')
+
