@@ -7,14 +7,12 @@ from django.conf.urls.static import static
 app_name = 'user_panel'
 
 
-urlpatterns = [
- path('admin/', admin.site.urls),
- path('user_panel/', include('user_panel.urls')),
+urlpatterns = {
+    path('admin/', admin.site.urls),
+    path('user_panel/', include('user_panel.urls')),
     path('edit/', views.edit, name='edit'),
-]
+}
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
-
-
