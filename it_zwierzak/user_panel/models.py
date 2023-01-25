@@ -7,7 +7,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=30, blank=True, null=True)
     surname = models.CharField(max_length=30, blank=True, null=True)
     address = models.CharField(max_length=30, blank=True, null=True)
-    phone = models.CharField(max_length=30, blank=True, null=True)
+    phone = models.CharField(max_length=9, blank=True, null=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     date_of_birth = models.DateField(blank=True, null=True)
 
