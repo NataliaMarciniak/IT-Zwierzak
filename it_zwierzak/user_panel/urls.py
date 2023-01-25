@@ -4,9 +4,6 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'user_panel'
-
-
 urlpatterns = {
     path('admin/', admin.site.urls),
     path('user_panel/', include('user_panel.urls')),
