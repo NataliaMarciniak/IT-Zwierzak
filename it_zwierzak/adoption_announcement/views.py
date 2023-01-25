@@ -9,7 +9,7 @@ def adopted(request):
     return render(request, 'adoption_announcement/adopted_animals.html')
 
 
-def adoptions(request):
+def announcement(request):
     announcement_data = Announcement.objects.all()
     return render(request, 'adoption_announcement/animals_for_adoption.html', {'announcement_data': announcement_data})
 
