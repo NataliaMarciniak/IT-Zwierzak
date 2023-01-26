@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from .forms import AdoptionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,20 +22,25 @@ def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_application.html')
 
 
+def confirmation_adoption_application(request):
+    return render(request, 'confirmation_adoption_application.html')
+
+
 class AdoptionApplicationView(LoginRequiredMixin, FormView):
     template_name = 'adoption_announcement/adoption_application.html'
-    form_class = AdoptionForm
-    success_url = '/animals_for_adoption'
 
+    def get(self, request):
+        form = AdoptionForm()
+        return render(request, self.template_name, {'form': form})
 
-def adoption_application_view(request):
-    form = AdoptionForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    def post(self, request):
+        form = AdoptionForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data
+            form = AdoptionForm()
+            return redirect('confirmation_adoption_application:confirmation_adoption_application')
+            args = {'form': form, 'text': text}
+            return render(request, self.template_name, args)
 
-    context = {
-        'form': form
-    }
-    return render(request, 'adoption_announcement/adoption_application.html', context)
 
 
