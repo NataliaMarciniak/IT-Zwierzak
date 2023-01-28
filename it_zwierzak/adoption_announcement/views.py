@@ -2,27 +2,21 @@ from django.shortcuts import render, redirect
 from django.views.generic import FormView, ListView, DetailView
 from .forms import AdoptionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Animal, Announcement
+from .models import Animal
 
 
 def adopted(request):
     return render(request, 'adoption_announcement/adopted_animals.html')
 
 
-class AnnouncementView(ListView):
+class Announcement(ListView):
     model = Animal
-    template_name = 'adoption_announcement/test_announcements.html'
+    template_name = 'adoption_announcement/animals_for_adoption.html'
 
 
-class AnnouncementDetailView(DetailView):
+class AnimalDetail(DetailView):
     model = Animal
-    template_name = 'adoption_announcement/test_details.html'
-
-
-
-def announcement(request):
-    announcement_data = Announcement.objects.all()
-    return render(request, 'adoption_announcement/animals_for_adoption.html', {'announcement_data': announcement_data})
+    template_name = 'adoption_announcement/announcement_detail.html'
 
 
 def adoption_card(request):

@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Announcement(models.Model):
     Animal = models.ForeignKey('Animal', on_delete=models.CASCADE, default=None)
-    Animal_Bio = models.TextField(blank=True)
+    short_description = models.TextField(blank=True)
 
     post_date = models.DateTimeField(auto_now_add=True)
     added_by = models.ForeignKey(
@@ -20,12 +20,12 @@ class Announcement(models.Model):
 
 class Animal(models.Model):
     GENDER_CHOICES = [
-        ('M', 'Męska'),
-        ('F', 'Żeńska'),
-        ('O', 'Inna')]
+        ('Samiec', 'Samiec'),
+        ('Samica', 'Samica'),
+        ('Inna', 'Inna')]
 
     species = models.CharField(max_length=10)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='Inna')
 
     name = models.CharField(max_length=20)
     color = models.CharField(max_length=100)
