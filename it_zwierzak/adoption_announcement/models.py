@@ -4,8 +4,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Announcement(models.Model):
-    Animal = models.ForeignKey('Animal', on_delete=models.CASCADE,default=None)
-    Animal_Bio = models.TextField(max_length=3000, default=' ')
+    Animal = models.ForeignKey('Animal', on_delete=models.CASCADE, default=None)
+    Animal_Bio = models.TextField(blank=True)
 
     post_date = models.DateTimeField(auto_now_add=True)
     added_by = models.ForeignKey(
@@ -15,7 +15,7 @@ class Announcement(models.Model):
     )
 
     def __str__(self):
-        return f'{self.Animal}'
+        return f'{self.Animal.name}'
 
 
 class Animal(models.Model):
@@ -23,7 +23,6 @@ class Animal(models.Model):
         ('M', 'Męska'),
         ('F', 'Żeńska'),
         ('O', 'Inna')]
-
 
     species = models.CharField(max_length=10)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
@@ -39,9 +38,9 @@ class Animal(models.Model):
 
     image = models.ImageField(null=True, blank=True, upload_to="images/")
 
-    health_and_vaccination = models.TextField(default=' ', max_length=3000, null=True, blank=True)
-    care = models.TextField(default=' ', max_length=3000, null=True, blank=True)
-    past = models.TextField(default=' ', max_length=3000, null=True, blank=True)
+    health_and_vaccination = models.TextField(null=True, blank=True)
+    care = models.TextField(null=True, blank=True)
+    past = models.TextField(null=True, blank=True)
 
     care_taker = models.ForeignKey(
         settings.AUTH_USER_MODEL,
