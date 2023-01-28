@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdoptionApplicationView
+from .views import AdoptionApplicationView, AnnouncementView, AnnouncementDetailView
 from . import views
 
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('adoption_application', AdoptionApplicationView.as_view(), name='adoption_application'),
     path('confirmation_adoption_application', views.confirmation_adoption_application,
          name='confirmation_adoption_application'),
+    path('test_views', AnnouncementView.as_view(), name='test_views'),
+    path('article/<int:pk>', AnnouncementDetailView.as_view(), name='test_details')
 ]

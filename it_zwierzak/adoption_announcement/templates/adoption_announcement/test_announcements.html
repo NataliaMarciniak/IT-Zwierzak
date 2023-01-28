@@ -1,0 +1,7 @@
+<h1> Lista sierściuchów</h1>
+<ul>
+{% for animal in object_list %}
+    <li><a href="{% url 'test_details' animal.pk %}"</a> {{animal.name}} - {{animal.gender}}
+    {{animal.age}}</li>
+{% endfor %}
+</ul>
