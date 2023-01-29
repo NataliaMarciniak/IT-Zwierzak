@@ -9,7 +9,7 @@
     {% for animal in object_list %}
         <div class="card p-2 m-2 col-2">
             <div class="card-body">
-                <img class="card-img-top" src="https://vetexpert.eu/wp-content/uploads/2019/01/blog_alergia_800x600_20201014-1.jpg">
+                <img class="card-img-top" src="{{ animal.image.url }}">
                 <p  class="fw-bold text-center">{{ animal.name }}</p>
                 <p class="text-left">
                     {{ animal.short_description }}
