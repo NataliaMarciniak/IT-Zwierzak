@@ -1,22 +1,24 @@
-from django.shortcuts import render
-from django.views.generic import FormView
+from django.shortcuts import render, redirect
+from django.views.generic import View, ListView, DetailView
 from .forms import AdoptionForm
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Animal
 
 
-
-# zaadoptowane
 def adopted(request):
     return render(request, 'adoption_announcement/adopted_animals.html')
 
 
-# przeniesienie do strony z kafelkami adopcji
-def adoptions(request):
-    return render(request, 'adoption_announcement/animals_to_adoption.html')
+class Announcement(ListView):
+    model = Animal
+    template_name = 'adoption_announcement/animals_for_adoption.html'
 
 
-# przeniesienie do konkretnego ogłoszenia zwierzęcia, po id z bazy danych
+class AnimalDetail(DetailView):
+    model = Animal
+    template_name = 'adoption_announcement/announcement_detail.html'
+
+
 def adoption_card(request):
     return render(request, 'adoption_announcement/announcement_detail.html')
 
@@ -25,21 +27,21 @@ def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_application.html')
 
 
-class AdoptionApplicationView(LoginRequiredMixin, FormView): #tylko dla zalogowanych
+def confirmation_adoption_application(request):
+    return render(request, 'confirmation_adoption_application.html')
+
+
+class AdoptionApplicationView(LoginRequiredMixin, View):
     template_name = 'adoption_announcement/adoption_application.html'
-    form_class = AdoptionForm
-    success_url = '/animals_to_adoption'
 
-def adoption_application_view(request):
-    form = AdoptionForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    def get(self, request):
+        form = AdoptionForm()
+        return render(request, self.template_name, {'form': form})
 
-    context = {
-        'form': form
-    }
-    return render(request, 'adoption_announcement/adoption_application.html', context)
-
-@login_required
-def private_page(request):
-    return render(request, 'adoption_announcement/adoption_application.html')
+    def post(self, request):
+        form = AdoptionForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data
+            form = AdoptionForm()
+            args = {'form': form, 'text': text}
+            return render(request, self.confirmation_template, args)
