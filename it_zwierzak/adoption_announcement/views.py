@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, ListView, DetailView
+from django.views.generic import View, ListView, DetailView
 from .forms import AdoptionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Animal
@@ -31,7 +31,7 @@ def confirmation_adoption_application(request):
     return render(request, 'confirmation_adoption_application.html')
 
 
-class AdoptionApplicationView(LoginRequiredMixin, FormView):
+class AdoptionApplicationView(LoginRequiredMixin, View):
     template_name = 'adoption_announcement/adoption_application.html'
 
     def get(self, request):
@@ -43,9 +43,5 @@ class AdoptionApplicationView(LoginRequiredMixin, FormView):
         if form.is_valid():
             text = form.cleaned_data
             form = AdoptionForm()
-            return redirect('confirmation_adoption_application:confirmation_adoption_application')
             args = {'form': form, 'text': text}
-            return render(request, self.template_name, args)
-
-
-
+            return render(request, self.confirmation_template, args)

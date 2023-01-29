@@ -38,16 +38,17 @@
                             </tr>
                             <tr>
                                 <td>Stan zdrowia</td>
-                                <td>{{ animal.health }}</td>
+                                <td>{{ animal.health_and_vaccination }}</td>
                             </tr>
                             <tr>
                                 <td>Data ogłoszenia</td>
-                                <td>{{ animal.post_date }}</td>
+                                <td>{{ animal.creation_date }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <img src="{{ animal.image.url }}" width="200" height="200">
             </div>
         </div>
     </div>
