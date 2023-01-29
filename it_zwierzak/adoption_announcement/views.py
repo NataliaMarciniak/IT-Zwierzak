@@ -1,22 +1,47 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.views.generic import View, ListView, DetailView
+from .forms import AdoptionForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Animal
 
-from .templates import forms
-
-def index(request):
-    return HttpResponse("Ogłoszenie Adopcji")
-
-def base(request):
-    return render(request, 'adoption_announcement/base.html')
 
 def adopted(request):
-    return render(request, 'adoption_announcement/adopted.html')
+    return render(request, 'adoption_announcement/adopted_animals.html')
 
-def adoptions(request):
-    return render(request, 'adoption_announcement/adoptions.html')
+
+class Announcement(ListView):
+    model = Animal
+    template_name = 'adoption_announcement/animals_for_adoption.html'
+
+
+class AnimalDetail(DetailView):
+    model = Animal
+    template_name = 'adoption_announcement/announcement_detail.html'
+
 
 def adoption_card(request):
-    return render(request, 'adoption_announcement/adoption_card.html')
+    return render(request, 'adoption_announcement/announcement_detail.html')
+
 
 def adoption_form(request):
-    return render(request, 'adoption_announcement/adoption_form.html')
+    return render(request, 'adoption_announcement/adoption_application.html')
+
+
+def confirmation_adoption_application(request):
+    return render(request, 'confirmation_adoption_application.html')
+
+
+class AdoptionApplicationView(LoginRequiredMixin, View):
+    template_name = 'adoption_announcement/adoption_application.html'
+
+    def get(self, request):
+        form = AdoptionForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = AdoptionForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data
+            form = AdoptionForm()
+            args = {'form': form, 'text': text}
+            return render(request, self.confirmation_template, args)

@@ -1,0 +1,58 @@
+{% extends 'adoption_announcement/base.html' %}
+
+{% block content %}
+
+<div class="col-lg-9 col-sm-12 row justify-content-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>{{ animal.name }}</h1>
+            <div class="col-lg-6 col-sm-12 mb-3 mb-xl-0">
+                <div class="adoption_detail">
+                    <p>{{ animal.description }}</p>
+                    <div class="table_responsive">
+                        <table class="table table_striped">
+                            <tbody>
+                            <tr>
+                                <td>Płeć</td>
+                                <td>{{ animal.gender }}</td>
+                            </tr>
+                            <tr>
+                                <td>Miasto</td>
+                                <td>{{ animal.city }}</td>
+                            </tr>
+                            <tr>
+                                <td>Umaszczenie</td>
+                                <td>{{ animal.color }}</td>
+                            </tr>
+                            <tr>
+                                <td>Wiek</td>
+                                <td>{{ animal.age }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gatunek</td>
+                                <td>{{ animal.species }}</td>
+                            </tr>
+                            <tr>
+                                <td>Waga</td>
+                                <td>{{ animal.weight }}</td>
+                            </tr>
+                            <tr>
+                                <td>Stan zdrowia</td>
+                                <td>{{ animal.health_and_vaccination }}</td>
+                            </tr>
+                            <tr>
+                                <td>Data ogłoszenia</td>
+                                <td>{{ animal.creation_date }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <img src="{{ animal.image.url }}" width="200" height="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,10 +1,13 @@
 from django.urls import path
-
+from .views import AdoptionApplicationView, Announcement, AnimalDetail
 from . import views
 
 urlpatterns = [
-    path('adopted', views.adopted, name='adopted'),
-    path('adoptions', views.adoptions, name='adoptions'),
-    path('adoption_card', views.adoption_card, name='adoption_card'),
-    path('adoption_form', views.adoption_form, name='adoption_form')
+    path('adopted_animals', views.adopted, name='adopted_animals'),
+    path('animals_for_adoption', Announcement.as_view(), name='animals_for_adoption'),
+    path('article/<int:pk>', AnimalDetail.as_view(), name='animal_detail'),
+    path('announcement_detail', views.adoption_card, name='announcement_detail'),
+    path('adoption_application', AdoptionApplicationView.as_view(), name='adoption_application'),
+    path('confirmation_adoption_application', views.confirmation_adoption_application,
+         name='confirmation_adoption_application'),
 ]

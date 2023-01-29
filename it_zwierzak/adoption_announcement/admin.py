@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Announcement, Member
+from .models import Animal, Announcement
 
 
+admin.site.register(Animal)
 admin.site.register(Announcement)
-admin.site.register(Member)
+
