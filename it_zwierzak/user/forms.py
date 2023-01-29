@@ -16,7 +16,7 @@ class UserProfileForm(UserChangeForm):
 
 
 class ProfileForm(forms.Form):
-    username = forms.CharField(label="Nazwa użytkownika")
+    username = forms.CharField(label="Nazwa użytkownika", disabled=True)
     first_name = forms.CharField(label="Imię")
     last_name = forms.CharField(label="Nazwisko")
     email = forms.EmailField(label="Email")
@@ -24,11 +24,11 @@ class ProfileForm(forms.Form):
         label="Data urodzenia",
         widget=forms.widgets.DateInput(
             attrs={"type": "date"}))
-    phone_number = forms.IntegerField(label="Numer telefonu")
+    phone_number = forms.CharField(label="Numer telefonu")
     street = forms.CharField(label="Ulica")
-    house_number = forms.IntegerField(label="Numer domu")
-    apartment_number = forms.IntegerField(label="Numer mieszkania")
-    postcode = forms.IntegerField(label="Kod pocztowy")
+    house_number = forms.CharField(label="Numer domu")
+    apartment_number = forms.CharField(label="Numer mieszkania")
+    postcode = forms.CharField(label="Kod pocztowy")
     city = forms.CharField(label="Miasto")
 
 

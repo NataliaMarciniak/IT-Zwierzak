@@ -60,25 +60,51 @@ def logout(request):
 def profile(request):
 
     if request.method == "GET":
-        form = ProfileForm()
+        user = request.user
+        try:
+            profile = Profile.objects.get(user=user)
+            form = ProfileForm(initial={
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'date_of_birth': profile.date_of_birth,
+                'phone_number': profile.phone_number,
+                'street': profile.street,
+                'house_number': profile.house_number,
+                'apartment_number': profile.apartment_number,
+                'postcode': profile.postcode,
+                'city': profile.city
+            })
+        except Profile.DoesNotExist:
+            form = ProfileForm(initial={
+                'username': user.username
+            })
         return render(request, 'user/user_profile.html', {'form': form})
 
     if request.method == "POST":
         form = ProfileForm(request.POST)
         if form.is_valid():
+            user = request.user
             data = form.cleaned_data
             try:
-                Profile.objects.update(
-                    date_of_birth=data.get('date_of_birth'),
-                    phone_number=data.get('phone_number'),
-                    street=data.get('street'),
-                    house_number=data.get('house_number'),
-                    apartment_number=data.get('apartment_number'),
-                    postcode=data.get('postcode'),
-                    city=data.get('city'),
-                )
+                profile = Profile.objects.get(user=user)
+                user.first_name = data.get('first_name')
+                user.last_name = data.get('last_name')
+                user.email = data.get('email')
+                profile.date_of_birth = data.get('date_of_birth')
+                profile.phone_number = data.get('phone_number')
+                profile.street = data.get('street')
+                profile.house_number = data.get('house_number')
+                profile.apartment_number = data.get('apartment_number')
+                profile.postcode = data.get('postcode')
+                profile.city = data.get('city')
+                profile.save()
+                user.save()
+
             except Profile.DoesNotExist:
                 Profile.objects.create(
+                    user=user,
                     date_of_birth=data.get('date_of_birth'),
                     phone_number=data.get('phone_number'),
                     street=data.get('street'),
