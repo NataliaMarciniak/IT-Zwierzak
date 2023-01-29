@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.views.generic import View, ListView, DetailView
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, View
 from .forms import AdoptionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Animal
@@ -19,10 +19,6 @@ class AnimalDetail(DetailView):
     template_name = 'adoption_announcement/announcement_detail.html'
 
 
-def adoption_card(request):
-    return render(request, 'adoption_announcement/announcement_detail.html')
-
-
 def adoption_form(request):
     return render(request, 'adoption_announcement/adoption_application.html')
 
@@ -32,9 +28,10 @@ def confirmation_adoption_application(request):
 
 
 class AdoptionApplicationView(LoginRequiredMixin, View):
+    model = Animal
     template_name = 'adoption_announcement/adoption_application.html'
 
-    def get(self, request):
+    def get(self, request, pk):
         form = AdoptionForm()
         return render(request, self.template_name, {'form': form})
 
@@ -45,3 +42,4 @@ class AdoptionApplicationView(LoginRequiredMixin, View):
             form = AdoptionForm()
             args = {'form': form, 'text': text}
             return render(request, self.confirmation_template, args)
+

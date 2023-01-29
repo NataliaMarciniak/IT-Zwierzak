@@ -49,6 +49,15 @@
                     </div>
                 </div>
                 <img src="{{ animal.image.url }}" width="200" height="200">
+                <p class="text-center"><a href="{% url 'adoption_application' animal.pk  %}" class="btn btn-primary">Adoptuj mnie!</a></p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3 mb-xl-0">
+            <div class="adoption-entry">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators"></ol>
+                    <div class="carousel-inner"></div>
+                </div>
             </div>
         </div>
     </div>
