@@ -30,16 +30,17 @@ def confirmation_adoption_application(request):
 class AdoptionApplicationView(LoginRequiredMixin, View):
     model = Animal
     template_name = 'adoption_announcement/adoption_application.html'
+    template_confirm = 'adoption_announcement/confirmation_adoption_application.html'
 
     def get(self, request, pk):
         form = AdoptionForm()
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request):
+    def post(self, request, pk):
         form = AdoptionForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data
             form = AdoptionForm()
             args = {'form': form, 'text': text}
-            return render(request, self.confirmation_template, args)
+            return render(request, self.template_confirm, args)
 
