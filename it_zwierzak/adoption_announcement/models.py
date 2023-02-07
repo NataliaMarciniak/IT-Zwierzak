@@ -70,7 +70,10 @@ class AdoptionApplication(models.Model):
         MaxValueValidator(24),
     ])
     feeding_the_animal = models.CharField(max_length=250)
-    care_budget = models.CharField(max_length=150)
+    care_budget = models.PositiveIntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(24),
+    ])
     what_if_you_go_on_vacation = models.CharField(max_length=250)
     applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
