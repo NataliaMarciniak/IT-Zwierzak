@@ -27,7 +27,7 @@ def confirmation_adoption_application(request):
     return render(request, 'confirmation_adoption_application.html')
 
 
-class AdoptionApplicationView(LoginRequiredMixin, View):
+class AdoptionApplicationView(View):
     model = Animal
     template_name = 'adoption_announcement/adoption_application.html'
     template_confirm = 'adoption_announcement/confirmation_adoption_application.html'
@@ -38,6 +38,7 @@ class AdoptionApplicationView(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         form = AdoptionForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             text = form.cleaned_data
             form = AdoptionForm()

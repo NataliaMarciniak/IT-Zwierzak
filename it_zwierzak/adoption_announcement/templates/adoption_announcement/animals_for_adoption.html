@@ -9,7 +9,9 @@
     {% for animal in object_list %}
         <div class="card p-2 m-2 col-2">
             <div class="card-body">
+                {% if animal.image %}
                 <img class="card-img-top" src="{{ animal.image.url }}">
+                {% endif %}
                 <p  class="fw-bold text-center">{{ animal.name }}</p>
                 <p class="text-left">
                     {{ animal.short_description }}

@@ -26,7 +26,7 @@ class Animal(models.Model):
     species = models.CharField(max_length=10)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='Inna')
     name = models.CharField(max_length=20)
-    color = models.CharField(max_length=100)
+    color = models.CharField(max_length=100, null=True)
     weight = models.FloatField(max_length=10, help_text='w kilogramach', validators=[MinValueValidator(0.1)])
     age = models.PositiveSmallIntegerField()
     months = models.PositiveSmallIntegerField(help_text='fill when age is below 1 year', default=0,
@@ -72,7 +72,7 @@ class AdoptionApplication(models.Model):
     feeding_the_animal = models.CharField(max_length=250)
     care_budget = models.PositiveIntegerField(validators=[
         MinValueValidator(1),
-        MaxValueValidator(24),
+        MaxValueValidator(10000),
     ])
     what_if_you_go_on_vacation = models.CharField(max_length=250)
     applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
